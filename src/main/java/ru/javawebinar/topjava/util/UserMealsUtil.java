@@ -38,7 +38,7 @@ public class UserMealsUtil {
         for (UserMeal m : meals) {
             LocalDate key = m.getDateTime().toLocalDate();
             if (caloriesSumByDay.containsKey(key)) {
-                caloriesSumByDay.put(key, caloriesSumByDay.get(key) + m.getCalories());
+                caloriesSumByDay.merge(key, m.getCalories(), Integer::sum);
             } else {
                 caloriesSumByDay.put(key, m.getCalories());
             }
